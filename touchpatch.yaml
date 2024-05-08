@@ -1,0 +1,21 @@
+# This is an auto generated file, do not edit it manually.
+# Yaml files in "resources" and "patches" directories under current path, and
+# same directories under "../mixins/" will be added in this file automatically.
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: numaflow-system
+
+resources:
+- upstream/numaflow-server.yaml
+- upstream/minimal-crds.yaml
+-  ../../base
+
+patchesStrategicMerge:
+  - patches/numaflow-server.yaml
+  - ../../base/mixins/patches/kustomization.yaml
+
+images:
+  - name: quay.io/numaproj/numaflow
+    newName: docker.intuit.com/quay-rmt/numaproj/numaflow
